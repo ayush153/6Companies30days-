@@ -1,20 +1,26 @@
 class Solution {
 public:
-     int res = 0;
-        for (int i = 0; i < grid.size(); i++){
-            for (int j = 0; j < grid[0].size(); j++){
-                if (grid[i][j] == 0){
-                    res += dfs(grid, i, j) ? 1 : 0;
+    int closedIsland(vector<vector<int>>& grid) {
+        int ans = 0;
+        for (int i = 0; i < grid.size(); i++)
+        {
+            for (int j = 0; j < grid[0].size(); j++)
+            {
+                if (grid[i][j] == 0)
+                {
+                    ans += dfs(grid,i,j)? 1 : 0;
                 }
             }
         }
-        return res;
+        return ans;
     }
     bool dfs(vector<vector<int>>& g, int i, int j){
-        if (i < 0 || j < 0 || i >= g.size() || j >= g[0].size()){
+        if (i < 0 || j < 0 || i >= g.size() || j >= g[0].size())
+        {
             return false;
         }
-        if (g[i][j] == 1){
+        if (g[i][j] == 1)
+        {
             return true;
         }
         g[i][j] = 1;
@@ -25,5 +31,4 @@ public:
         bool d4 = dfs(g, i, j-1);
         return d1 && d2 && d3 && d4;
     }
-    
 };
